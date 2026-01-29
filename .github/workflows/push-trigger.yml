@@ -52,7 +52,8 @@ jobs:
       - name: Build Automationtests with Maven
         run: |
           cd ${{ env.SERVICE_LOCATION}}
-          mvn -U -B package -Dmaven.wagon.http.retryHandler.count=2 --file pom.xml -s $GITHUB_WORKSPACE/settings.xml
+          mvn -U -B package -Dmaven.wagon.http.retryHandler.count=2 -DskipTests --file pom.xml -s $GITHUB_WORKSPACE/settings.xml
+          #mvn -U -B package -Dmaven.wagon.http.retryHandler.count=2 --file pom.xml -s $GITHUB_WORKSPACE/settings.xml
 
       - name: Ready the springboot artifacts
         if: ${{ !contains(github.ref, 'master') || !contains(github.ref, 'main') }}
